@@ -1,0 +1,46 @@
+<header *ngIf="utilisateur" class="app-bar bg-white fg-dark" data-role="appbar" data-expand-point="md">
+  <a href="" class="d-block brand fg-dark no-hover" style="width: 50vw;">
+    <span class="border bd-white border-radius p-2">
+      EDF Cameroun
+    </span>
+  </a>
+  <input style="width: 99%;" data-role="input" placeholder="Rechercher">
+  <ul class="app-bar-menu ml-auto">
+    <li><a href="home">Accueil</a></li>
+    <li>
+      <a href="#" class="dropdown-toggle">Nouveau</a>
+      <ul class="d-menu" data-role="dropdown">
+        <li><a href="">Fichier</a></li>
+        <li><a href="">Dossier</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="https://github.com/morrisjdev/ng-metro4" target="_blank">
+        <span class="mif-bell mif-2x d-none d-block-md"></span>
+        <span class="d-block d-none-md">Notifications</span>
+      </a>
+    </li>
+
+    <li>
+      <a style="margin-right: 20px;" class="dropdown-toggle" href="https://github.com/morrisjdev/ng-metro4" target="_blank">
+        <span >Muanza Kangudie</span>
+      </a>
+      <ul class="d-menu" data-role="dropdown">
+        <li><a href="">Mes infos</a></li>
+        <li><a href="">Déconnexion</a></li>
+      </ul>
+    </li>
+  </ul>
+</header>
+<div class="row">
+  <div class="cell-lg-3 for-menu-gauche">
+    <div *ngIf="utilisateur" class="menu-gauche">
+      <app-menu-gauche></app-menu-gauche>
+    </div>
+  </div>
+  <div class="cell-lg-9">
+  <div class="contenu">
+    <router-outlet></router-outlet>
+  </div>
+  </div>
+</div>
