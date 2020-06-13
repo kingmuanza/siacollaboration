@@ -15,6 +15,9 @@
         background-color: #fefefe;
         font-weight: bold;;
     }
+    &:active {
+        border: 0px solid red!important;
+    }
 }
 .muanza-menu-item.active{
     padding-top: 7px;

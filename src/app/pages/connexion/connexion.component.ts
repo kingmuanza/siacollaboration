@@ -39,7 +39,7 @@ export class ConnexionComponent implements OnInit {
     const passe = valueForm.passe;
     this.idService.signIn(email, passe).then(() => {
       console.log('Authentification réussie');
-      this.router.navigate(['inscription']);
+      this.router.navigate(['accueil']);
     });
   }
 

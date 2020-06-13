@@ -6,7 +6,7 @@
   </a>
   <input style="width: 99%;" data-role="input" placeholder="Rechercher">
   <ul class="app-bar-menu ml-auto">
-    <li><a href="home">Accueil</a></li>
+    <li  style="margin-left: 10px;"><a routerLink="accueil" routerLinkActive="active">Accueil</a></li>
     <li>
       <a href="#" class="dropdown-toggle">Nouveau</a>
       <ul class="d-menu" data-role="dropdown">
@@ -15,19 +15,19 @@
       </ul>
     </li>
     <li>
-      <a href="https://github.com/morrisjdev/ng-metro4" target="_blank">
+      <a routerLink="notifications" routerLinkActive="active">
         <span class="mif-bell mif-2x d-none d-block-md"></span>
         <span class="d-block d-none-md">Notifications</span>
       </a>
     </li>
 
     <li>
-      <a style="margin-right: 20px;" class="dropdown-toggle" href="https://github.com/morrisjdev/ng-metro4" target="_blank">
+      <a routerLink="compte" routerLinkActive="active" style="margin-right: 20px;" class="dropdown-toggle" href="https://github.com/morrisjdev/ng-metro4" target="_blank">
         <span >Muanza Kangudie</span>
       </a>
       <ul class="d-menu" data-role="dropdown">
-        <li><a href="">Mes infos</a></li>
-        <li><a href="">Déconnexion</a></li>
+        <li><a routerLink="compte/view">Mes infos</a></li>
+        <li><a>Déconnexion</a></li>
       </ul>
     </li>
   </ul>
