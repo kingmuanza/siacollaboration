@@ -1,1 +1,36 @@
-<p>groupe-list works!</p>
+<div class="page">
+    <div class="entete">
+        <div class="row">
+            <div class="cell-lg-8">
+                <div class="titre">
+                    Groupes de partages
+                </div>
+                <div class="sous-titre">
+                    Créer des groupes pour mieux partager des fichiers
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contenu">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+            class="table row-border table-border cell-border" style="padding: 0px;">
+            <thead>
+                <tr>
+                    <th>Noms</th>
+                    <th>Prénoms</th>
+                    <th>Login</th>
+                    <th>Rôle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let utilisateur of utilisateurs">
+                    <td>{{utilisateur.noms}}</td>
+                    <td>{{utilisateur.prenoms}}</td>
+                    <td>{{utilisateur.login}}</td>
+                    <td>{{utilisateur.role}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

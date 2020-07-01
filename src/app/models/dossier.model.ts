@@ -7,9 +7,15 @@ export class Dossier {
     date: Date;
     utilisateurs: Array<Utilisateur>;
     createur: Utilisateur;
+    idutilisateurs: Array<string>;
 
-    constructor() {
+    constructor(nom?: string) {
         this.id = this.generateUID();
+        this.idutilisateurs = new Array<string>();
+        if (nom) {
+            this.nom = nom;
+        }
+        this.date = new Date();
     }
 
     generateUID(): string {

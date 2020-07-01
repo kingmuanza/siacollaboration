@@ -15,6 +15,7 @@ export class ConnexionComponent implements OnInit {
   connexionForm: FormGroup;
   utilisateur: Utilisateur;
   utilisateurSubscription: Subscription;
+  messageErreur = '';
 
   constructor(private router: Router, private idService: UtilisateurService, private formBuilder: FormBuilder) { }
 
@@ -22,6 +23,9 @@ export class ConnexionComponent implements OnInit {
     this.initConnexionForm();
     this.utilisateurSubscription = this.idService.utilisateurSubject.subscribe((utilisateur) => {
       this.utilisateur = utilisateur;
+      if (this.utilisateur) {
+        this.router.navigate(['accueil']);
+      }
     });
     this.idService.emit();
   }
@@ -40,6 +44,9 @@ export class ConnexionComponent implements OnInit {
     this.idService.signIn(email, passe).then(() => {
       console.log('Authentification réussie');
       this.router.navigate(['accueil']);
+    }).catch((e) => {
+      console.log(e);
+      this.messageErreur = 'Email ou mot de passe incorrect';
     });
   }
 

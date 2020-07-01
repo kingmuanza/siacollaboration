@@ -1,0 +1,120 @@
+.buttons {
+    button {
+        margin-right: 10px;
+    }
+}
+
+.button.muanza {
+    background-color: rgb(1, 50, 126);
+    color: #fff;
+}
+
+.nom { 
+    white-space: pre-wrap;      /* CSS3 */   
+    white-space: -moz-pre-wrap; /* Firefox */    
+    white-space: -pre-wrap;     /* Opera <7 */   
+    white-space: -o-pre-wrap;   /* Opera 7 */    
+    word-wrap: break-word;      /* IE */
+ }
+.dossiers {
+    margin-top: 20px;
+
+    .dossier {
+        cursor: pointer;
+        padding-bottom: 20px;
+        border: 0px solid white;
+
+        &:hover {
+            border: 0px solid orangered;
+            opacity: 0.8;
+            background-color: rgba(orangered, 0.1);
+        }
+        &:active {
+            border: 0px solid orangered;
+            opacity: 0.8;
+            background-color: rgba(orangered, 0.1);
+        }
+
+        .icone {
+            height: 80px;
+            border: 0px solid #444;
+            text-align: center;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        .details {
+            margin-top: -10px;
+            font-size: 0.9em;
+            line-height: 1.15;
+            text-align: center;
+
+            .date {
+                font-size: 0.7em;
+                color: #777;
+            }
+        }
+    }
+
+    .fichier {
+        cursor: pointer;
+        padding-bottom: 20px;
+        border: 0px solid white;
+
+        &:hover {
+            border: 0px solid orangered;
+            opacity: 0.8;
+            background-color: rgba(orangered, 0.1);
+        }
+        &:active {
+            border: 0px solid orangered;
+            opacity: 0.8;
+            background-color: rgba(orangered, 0.1);
+        }
+
+        .icone {
+            height: 80px;
+            border: 0px solid #444;
+            text-align: center;
+            padding: 5px;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        .details {
+            margin-top: 0px;
+            font-size: 0.9em;
+            line-height: 1.15;
+            text-align: center;
+
+            .date {
+                font-size: 0.7em;
+                color: #777;
+            }
+        }
+    }
+}
+
+.muanza-menu-clic-droit-item {
+    color: #333; 
+    background-color: #fff; 
+    padding: 5px;
+    padding-left: 20px;
+    width: 250px;
+    font-size: 1.2em;
+    text-decoration: none;
+    &:hover {
+        background-color: #ddd;
+    }
+    span.icone {
+        margin-right: 30px;
+    }
+}
+
+.fileButton {
+    display: none;
+}

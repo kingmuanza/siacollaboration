@@ -1,1 +1,36 @@
-<p>compte-list works!</p>
+<div class="page">
+    <div class="entete">
+        <div class="row">
+            <div class="cell-lg-8">
+                <div class="titre">
+                    Utilisateurs
+                </div>
+                <div class="sous-titre">
+                    Retrouvez tous les comptes des utilisateurs de la plateforme
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contenu">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+            class="table row-border table-border cell-border" style="padding: 0px;">
+            <thead>
+                <tr>
+                    <th>Noms</th>
+                    <th>Prénoms</th>
+                    <th>Login</th>
+                    <th>Rôle</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let utilisateur of utilisateurs">
+                    <td>{{utilisateur.noms}}</td>
+                    <td>{{utilisateur.prenoms}}</td>
+                    <td>{{utilisateur.login}}</td>
+                    <td>{{utilisateur.role}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

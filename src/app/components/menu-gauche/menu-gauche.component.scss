@@ -1,49 +1,101 @@
+$bleu: rgb(1, 50, 126);
+
 .muanza-menu {
-    padding-left: 0px;;
+    padding-left: 0px;
+    ;
 }
+
 .muanza-menu-item-group {
-    padding-left: 0px;;
+    padding-left: 0px;
+    ;
 }
-.muanza-menu-item {
+
+a.muanza-menu-item {
+    display: block;
     padding-left: 20px;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
     color: #444444;
     cursor: pointer;
     transition: letter-spacing 200ms;
-    &:hover{
+
+    &:hover {
         letter-spacing: 0.5px;
         background-color: #fefefe;
-        font-weight: bold;;
+        font-weight: bold;
+        text-decoration: none;
     }
+
     &:active {
-        border: 0px solid red!important;
+        border: 0px solid red !important;
     }
 }
-.muanza-menu-item.active{
+
+.muanza-menu-item.active {
     padding-top: 7px;
     padding-bottom: 7px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-    background: linear-gradient(to right, #b31217, #e52d27);
+    background: #fe8c00;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f83600, #fe8c00);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f83600, #fe8c00);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     color: #fff;
     width: 90%;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
+
+
+    .muanza-menu-icon {
+        margin-right: 15px;
+        color: #fff;
+    }
 }
-.muanza-menu-item:hover a{
+
+a.muanza-menu-item.active {
+    display: block;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    background: #fe8c00;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #f83600, #fe8c00);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #f83600, #fe8c00);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    color: #fff;
+    width: 90%;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+
+    .muanza-menu-icon {
+        margin-right: 15px;
+        color: #fff;
+    }
 }
+
+
 .muanza-menu-item a {
     text-decoration: none;
     color: #444444;
 }
+
 .muanza-menu-icon {
     margin-right: 15px;
+    color: $bleu;
 }
+
 .muanza-menu-title {
     text-transform: uppercase;
     padding: 5px;
     padding-left: 20px;
-    background-color: #fafafa;;
+    background-color: #fafafa;
+    ;
 }
-.ombre{
+
+.ombre {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

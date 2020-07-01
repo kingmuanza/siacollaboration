@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DataTablesModule } from 'angular-datatables';
+import { ContextMenuModule } from 'ngx-contextmenu';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -69,7 +71,12 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgMetro4Module
+    NgMetro4Module,
+    DataTablesModule,
+    ContextMenuModule.forRoot({
+      autoFocus: true,
+      useBootstrap4: true,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

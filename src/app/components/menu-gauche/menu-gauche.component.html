@@ -4,85 +4,90 @@
         Récents
     </div>
     <div class="muanza-menu-item-group">
-        <div routerLink="/dossier/recents" routerLinkActive="active" class="muanza-menu-item" style="">
+        <a routerLink="/dossier/recents" routerLinkActive="active" class="muanza-menu-item" style="">
             <small class="mif-calendar muanza-menu-icon">
 
             </small>
             <small>
                 Dossiers récents
             </small>
-        </div>
-        <div routerLink="fichier/recents" routerLinkActive="active" class="muanza-menu-item">
+        </a>
+        <a routerLink="fichier/recents" routerLinkActive="active" class="muanza-menu-item">
             <small class="mif-files-empty muanza-menu-icon">
 
             </small>
             <small>
                 Recemment ouverts
             </small>
-        </div>
+        </a>
     
     </div>
-    <div id="dropdown_toggle_suivi" class="muanza-menu-title">
-        Pour moi
+    <div id="dropdown_toggle_suivi" class="muanza-menu-title" >
+        <div style="line-height: 1.15; color:rgb(1, 50, 126); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 200px;">
+            <b>
+                {{utilisateur.noms ? utilisateur.noms : 'Pour moi'}}
+                {{utilisateur.prenoms ? utilisateur.prenoms : ''}}
+            </b>
+        </div>
     </div>
     <div class="muanza-menu-item-group">
-        <div routerLink="/dossier" routerLinkActive="active" class="muanza-menu-item">
+        <a routerLink="/doss" routerLinkActive="active" class="muanza-menu-item">
             <small class="mif-folder-shared muanza-menu-icon" style="">
             </small>
             <small>
                 Ajoutés par moi
             </small>
-        </div>
-        <div routerLink="/dossier" routerLinkActive="active" class="muanza-menu-item">
+        </a>
+        <a routerLink="/dossier" routerLinkActive="active" class="muanza-menu-item">
             <small class="mif-folder muanza-menu-icon" style="">
             </small>
             <small>
                 Partagés avec moi
             </small>
-        </div>
-        <div routerLink="/groupe" routerLinkActive="active" class="muanza-menu-item">
+        </a>
+        <a routerLink="/groupe" routerLinkActive="active" class="muanza-menu-item">
             <small class="mif-users muanza-menu-icon" style="">
             </small>
             <small>
                 Groupes d'utilisateurs
             </small>
-        </div>
-        <div routerLink="/fichier/telechargees" routerLinkActive="active" class="muanza-menu-item">
+        </a>
+        <a routerLink="/fichier/telechargees" routerLinkActive="active" class="muanza-menu-item">
             <small class="mif-file-download muanza-menu-icon" style="">
             </small>
             <small>
                 Fichiers téléchargés
             </small>
-        </div>
+        </a>
     </div>
     <div id="dropdown_toggle_1" class="muanza-menu-title">
         Paramètres
     </div>
 
     <div class="muanza-menu-item-group">
-        <div routerLink="/utilisateurs" routerLinkActive="active" class="muanza-menu-item">
+        <a routerLink="/compte" routerLinkActive="active" class="muanza-menu-item">
             <small class="mif-user-check muanza-menu-icon">
 
             </small>
             <small>
                 Comptes utilisateurs
             </small>
-        </div>
-        <div routerLink="/serveur-fichier" routerLinkActive="active" class="muanza-menu-item">
+        </a>
+        <a routerLink="/serveur-fichier" routerLinkActive="active" class="muanza-menu-item">
             <small class="mif-server muanza-menu-icon">
 
             </small>
             <small>
                 Serveur de fichier
             </small>
-        </div>
-        <div routerLink="/base-donnees" routerLinkActive="active" class="muanza-menu-item">
+        </a>
+        <a routerLink="/base-donnees" routerLinkActive="active" class="muanza-menu-item">
             <small class="mif-database muanza-menu-icon">
 
             </small>
             <small>
                 Base de données
             </small>
-        </div>
+        </a>
     </div>
 </div>

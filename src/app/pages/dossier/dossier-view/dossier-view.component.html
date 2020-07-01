@@ -1,1 +1,247 @@
-<p>dossier-view works!</p>
+<div class="page">
+    <div class="entete">
+        <div class="row">
+            <div class="cell-lg-8">
+                <div class="titre">
+                    {{dossier ? dossier.nom: 'Nouveau dossier'}}
+                </div>
+                <div style="margin: -18px; margin-left: -18px;">
+                    <ul class="breadcrumbs size-small">
+                        <li class="page-item">
+                            <a routerLink="accueil" class="page-link">
+                                Accueil
+                            </a>
+                        </li>
+                        <li *ngFor="let a of arbre" class="page-item">
+                            <a (click)="ouvrir(a)" class="page-link">
+                                {{a.nom}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contenu">
+        <div class="buttons">
+            <div>
+                <input class="fileButton" #fileButton (change)="uploadFile($event)" type="file" multiple>
+            </div>
+            <div class="row">
+                <div class="cell-lg-2">
+                    <button (click)="importer()" class="button" style="width: 100%;">
+                        Importer un fichier
+                    </button>
+                </div>
+                <div class="cell-lg-2">
+                    <button (click)="nouveauDossier()" class="button" style="width: 100%;">
+                        Nouveau dossier
+                    </button>
+                </div>
+                <div class="cell-lg-8">
+                    <input [(ngModel)]="recherche" (ngModelChange)="rechercher($event)" data-role="input" placeholder="Rechercher...">
+                </div>
+            </div>
+        </div>
+        <div [ngStyle]="{'width': (largeur%100) +'%'}" style="height: 5px; background-color: orangered">
+
+        </div>
+        <div class="dossiers">
+            <div class="row">
+                <div class="cell-lg-2" *ngFor="let dossier of dossiers" [contextMenu]="basicMenu">
+                    <div (dblclick)="ouvrir(dossier)" class="dossier">
+                        <div class="icone">
+                            <img src="../../../assets/folder.png">
+                        </div>
+                        <div class="details">
+                            <div class="nom" style="white-space: pre-wrap;">
+                                <b>{{dossier.nom}}</b>
+                            </div>
+                            <div *ngIf="dossier.createur">
+                                {{dossier.createur.noms}}
+                                {{dossier.createur.prenoms}}
+                            </div>
+                            <div class="date">
+                                {{dossier.date | date: 'yyyy-MM-dd'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <context-menu>
+                        <ng-template contextMenuItem (execute)="ouvrir(dossier)">
+                            <div class="muanza-menu-clic-droit-item premier" style="">
+                                <span class="icone mif-folder-open"></span>
+                                Ouvrir
+                            </div>
+                        </ng-template>
+                        <ng-template contextMenuItem (execute)="renommer(dossier)">
+                            <div class="muanza-menu-clic-droit-item" style="">
+                                <span class="icone mif-pencil"></span>
+                                Renommer
+                            </div>
+                        </ng-template>
+                        <ng-template contextMenuItem (execute)="supprimer(dossier)">
+                            <div class="muanza-menu-clic-droit-item dernier" style="">
+                                <span class="icone mif-bin"></span>
+                                Supprimer
+                            </div>
+                        </ng-template>
+                        <ng-template contextMenuItem (execute)="partager(dossier)">
+                            <div class="muanza-menu-clic-droit-item dernier" style="">
+                                <span class="icone mif-users"></span>
+                                Partager
+                            </div>
+                        </ng-template>
+                    </context-menu>
+                </div>
+                <div class="cell-lg-2" *ngFor="let dossier of documents" [contextMenu]="basicMenu">
+                    <div [title]="dossier.taille + ' octects'" (dblclick)="telecharger(dossier)" class="fichier">
+                        <div class="icone">
+                            <ng-container *ngIf="!isImage(dossier)">
+                                <img src="../../../assets/fichier.png">
+                            </ng-container>
+                            <ng-container *ngIf="isImage(dossier)">
+                                <img [src]="dossier.url">
+                            </ng-container>
+                        </div>
+                        <div class="details">
+                            <div class="nom" style="white-space: pre-wrap;">
+                                <b>{{dossier.nom}}</b>
+                            </div>
+                            <div *ngIf="dossier.createur">
+                                {{dossier.createur.noms}}
+                                {{dossier.createur.prenoms}}
+                            </div>
+                            <div class="date">
+                                {{dossier.date | date: 'yyyy-MM-dd'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <context-menu>
+                        <ng-template contextMenuItem (execute)="ouvrir(dossier)">
+                            <div class="muanza-menu-clic-droit-item premier" style="">
+                                <span class="icone mif-folder-open"></span>
+                                Ouvrir
+                            </div>
+                        </ng-template>
+                        <ng-template contextMenuItem (execute)="renommer(dossier)">
+                            <div class="muanza-menu-clic-droit-item" style="">
+                                <span class="icone mif-pencil"></span>
+                                Renommer
+                            </div>
+                        </ng-template>
+                        <ng-template contextMenuItem (execute)="supprimer(dossier)">
+                            <div class="muanza-menu-clic-droit-item dernier" style="">
+                                <span class="icone mif-bin"></span>
+                                Supprimer
+                            </div>
+                        </ng-template>
+                        <ng-template contextMenuItem (execute)="partager(dossier)">
+                            <div class="muanza-menu-clic-droit-item dernier" style="">
+                                <span class="icone mif-users"></span>
+                                Partager
+                            </div>
+                        </ng-template>
+                    </context-menu>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<m4-dialog #dialogCreation width="50%" class="shadow-1">
+    <div dialog-title>{{nomDossier ? nomDossier : 'Nouveau dossier'}}</div>
+    <div dialog-content>
+        <div>
+            <input data-prepend="Nom" data-role="input" [(ngModel)]="nomDossier">
+        </div>
+        <div style="margin-top: 10px;">
+            <div>
+                <select data-prepend="Partager avec :" data-role="select">
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <div dialog-actions>
+        <button (click)="creerDossier()" class="button muanza" style="margin-right: 20px;">Créer le dossier</button>
+        <button class="button" (click)="dialogCreation.close()">Annuler</button>
+    </div>
+</m4-dialog>
+
+
+<m4-dialog #dialogModification width="50%" class="shadow-1">
+    <div dialog-title>
+        Renommer le dossier
+        "{{dossier ? dossier.nom : 'Nouveau dossier'}}"
+    </div>
+    <div dialog-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
+            <div>
+                <input formControlName="nom" data-prepend="Nom" data-role="input">
+            </div>
+            <div style="margin-top: 20px;">
+                <button [disabled]="form.invalid" class="button muanza" style="margin-right: 20px;">
+                    Renommer le
+                    dossier
+                </button>
+                <a class="button" (click)="dialogModification.close()">Annuler</a>
+            </div>
+        </form>
+    </div>
+    <div dialog-actions>
+    </div>
+</m4-dialog>
+
+<m4-dialog #dialogPartage width="50%" class="shadow-1">
+    <div dialog-title>
+        Partager le dossier "{{dossier ? dossier.nom : 'Nouveau dossier'}}" avec
+    </div>
+    <div dialog-content>
+        <div class="row">
+            <div class="cell-lg-12">
+                <input data-role="input" placeholder="Rechercher...">
+            </div>
+        </div>
+        <div class="row">
+            <div class="cell-lg-6">
+                <b>
+                    Noms et Prénoms
+                </b>
+            </div>
+            <div class="cell-lg-3">
+                <b>
+                    Lecture
+                </b>
+            </div>
+            <div class="cell-lg-3">
+                <b>
+                    Ecriture
+                </b>
+            </div>
+        </div>
+        <div class="row" *ngFor="let utilisateur of utilisateurs">
+            <div class="cell-lg-6">
+                {{utilisateur.noms}}
+                {{utilisateur.prenoms}}
+            </div>
+            <div class="cell-lg-3">
+                <input type="checkbox">
+            </div>
+            <div class="cell-lg-3">
+                <input type="checkbox">
+            </div>
+        </div>
+    </div>
+    <div dialog-actions>
+        <div>
+            <button style="margin-right: 20px;" class="button muanza">
+                Terminer
+            </button>
+            <a (click)="dialogPartage.close()" class="button">
+                Annuler
+            </a>
+        </div>
+    </div>
+</m4-dialog>

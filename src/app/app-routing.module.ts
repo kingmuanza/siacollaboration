@@ -19,6 +19,8 @@ import { GroupeViewComponent } from './pages/groupe/groupe-view/groupe-view.comp
 import { FichierRecentComponent } from './pages/fichier/fichier-recent/fichier-recent.component';
 import { DossierRecentComponent } from './pages/dossier/dossier-recent/dossier-recent.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { CompteEditComponent } from './pages/compte/compte-edit/compte-edit.component';
+import { CompteViewComponent } from './pages/compte/compte-view/compte-view.component';
 
 
 const routes: Routes = [
@@ -47,6 +49,11 @@ const routes: Routes = [
   { path: 'groupe/edit', component: GroupeEditComponent },
   { path: 'groupe/edit/:id', component: GroupeEditComponent },
   { path: 'groupe/view/:id', component: GroupeViewComponent },
+
+  { path: 'compte', component: CompteListComponent },
+  { path: 'compte/edit', component: CompteEditComponent },
+  { path: 'compte/edit/:id', component: CompteEditComponent },
+  { path: 'compte/view/:id', component: CompteViewComponent },
 
   { path: '**', redirectTo: 'connexion' }
 ];

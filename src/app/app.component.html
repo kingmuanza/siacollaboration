@@ -1,7 +1,8 @@
 <header *ngIf="utilisateur" class="app-bar bg-white fg-dark" data-role="appbar" data-expand-point="md">
   <a href="" class="d-block brand fg-dark no-hover" style="width: 50vw;">
-    <span class="border bd-white border-radius p-2">
-      EDF Cameroun
+    <img src="../assets/logoEDF.png" style="height: 50px; margin-top: -10px;">
+    <span style="font-weight: bolder; margin-left: 10px; color: #eee; font-size: 1.2em;">
+      EDF - AMOA
     </span>
   </a>
   <input style="width: 99%;" data-role="input" placeholder="Rechercher">
@@ -22,23 +23,33 @@
     </li>
 
     <li>
-      <a routerLink="compte" routerLinkActive="active" style="margin-right: 20px;" class="dropdown-toggle" href="https://github.com/morrisjdev/ng-metro4" target="_blank">
-        <span >Muanza Kangudie</span>
+      <a routerLink="compte" routerLinkActive="active" class="dropdown-toggle" href="https://github.com/morrisjdev/ng-metro4" target="_blank">
+        <span style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px; display: block; height: 50px;">
+          {{utilisateur.noms}}
+          {{utilisateur.prenoms}}
+        </span>
       </a>
       <ul class="d-menu" data-role="dropdown">
         <li><a routerLink="compte/view">Mes infos</a></li>
         <li><a>Déconnexion</a></li>
       </ul>
     </li>
+    
+    <li>
+      <a style="margin-right: 20px;" >
+        <img style="margin-top: -5px ; height: 35px; width: 35px; border-radius: 50%; border: 2px solid orangered; padding: 2px;" src="../assets/logoEDF.png">
+      </a>
+    </li>
+
   </ul>
 </header>
-<div class="row">
-  <div class="cell-lg-3 for-menu-gauche">
+<div class="row" style="height: 100vh; overflow: hidden;">
+  <div class="cell-lg-2 for-menu-gauche" style="margin:0; padding: 0;">
     <div *ngIf="utilisateur" class="menu-gauche">
       <app-menu-gauche></app-menu-gauche>
     </div>
   </div>
-  <div class="cell-lg-9">
+  <div class="cell-lg-10">
   <div class="contenu">
     <router-outlet></router-outlet>
   </div>

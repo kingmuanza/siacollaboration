@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "edfcameroun": {
+      "hosting": {
+        "edfcameroun": [
+          "edfcameroun"
+        ]
+      }
+    }
+  }
+}

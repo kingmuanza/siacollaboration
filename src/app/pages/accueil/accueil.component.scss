@@ -1,0 +1,205 @@
+.buttons {
+    button {
+        margin-right: 10px;
+    }
+}
+
+.button.muanza {
+    background-color: rgb(1, 50, 126);
+    color: #fff;
+}
+
+.dossiers {
+    margin-top: 20px;
+
+    .dossier {
+        cursor: pointer;
+        padding-bottom: 20px;
+        border: 0px solid white;
+
+        &:hover {
+            border: 0px solid orangered;
+            opacity: 0.8;
+            background-color: rgba(orangered, 0.1);
+        }
+
+        &:active {
+            border: 0px solid orangered;
+            opacity: 0.8;
+            background-color: rgba(orangered, 0.1);
+        }
+
+        .icone {
+            height: 80px;
+            border: 0px solid #444;
+            text-align: center;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        .details {
+            margin-top: -10px;
+            font-size: 0.9em;
+            line-height: 1.15;
+            text-align: center;
+
+            .date {
+                font-size: 0.7em;
+                color: #777;
+            }
+        }
+    }
+}
+
+.muanza-menu-clic-droit-item {
+    color: #333;
+    background-color: #fff;
+    padding: 5px;
+    padding-left: 20px;
+    width: 250px;
+    font-size: 1.2em;
+    text-decoration: none;
+
+    &:hover {
+        background-color: #ddd;
+    }
+
+    span.icone {
+        margin-right: 30px;
+    }
+}
+
+
+@keyframes muanza {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+$hauteur: 35vh;
+
+.sujets {
+    padding-top: 1vh;
+
+    .chapitre {
+        margin-bottom: 5px;
+        font-size: 1.5em;
+    }
+
+    .sujet {
+        height: $hauteur;
+        animation-name: muanza;
+        animation-duration: 400ms;
+        cursor: pointer;
+
+        .image-arriere {
+            background-attachment: fixed;
+            background-image: url('../../../assets/barrage.jpg');
+            height: $hauteur;
+        }
+
+        .description {
+            height: $hauteur;
+            margin-top: -35vh;
+            cursor: pointer;
+
+            &.white {
+                background-color: rgba(230, 230, 230, 0.95);
+
+                .sujet--contenu {
+                    .contenu--titre {
+                        color: #000;
+                    }
+
+                    .contenu--sous-titre {
+                        color: #111;
+                    }
+
+                    .createur {
+                        color: #222;
+                    }
+                }
+            }
+
+            &.black {
+                background-color: rgba(0, 0, 5, 0.85);
+                ;
+
+                .sujet--contenu {
+                    .contenu--titre {
+                        color: #fff;
+                    }
+
+                    .contenu--sous-titre {
+                        color: #fafafa;
+                    }
+
+                    .createur {
+                        color: #fff;
+                    }
+                }
+                &:hover {
+                    background-color: rgba(orangered, 0.75);
+                    
+                    // background: -webkit-linear-gradient(to right, #f83600, #fe8c00);
+                }
+            }
+
+            .sujet--contenu {
+                margin-top: 30vh;
+                padding: 10px;
+                padding-bottom: 15px;
+                transform: translateY(-100%);
+
+                .contenu--titre {
+                    font-weight: bold;
+                    font-size: 1.1em;
+                    line-height: 1.15;
+                    width: 80%;
+                }
+
+                .contenu--sous-titre {
+                    font-size: 0.9em;
+                    margin-top: 5px;
+                    line-height: 1.15;
+                    width: 95%;
+                }
+
+                .createur {
+                    .cell-lg-2 {
+                        text-align: right;
+                    }
+
+                    img {
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 50%;
+                        border: 2px solid orangered;
+                        margin-right: 10px;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+
+            .commentaires {
+                &.white {
+                    color: #111;
+                }
+
+                &.black {
+                    color: #fafafa;
+                }
+
+                text-align: right;
+                padding-top: 5px;
+                padding-right: 15px;
+                height: 5vh;
+            }
+        }
+    }
+}

@@ -10,11 +10,17 @@ export class Utilisateur {
     poste: string;
     photoURL: string;
     role: string;
-    date: string;
+    date: Date;
     departement: Departement;
     connecteAuMoinsUneFois: boolean;
 
-    constructor() {
+    constructor(noms?: string, prenoms?: string) {
+        if (noms) {
+            this.noms = noms;
+        }
+        if (prenoms) {
+            this.prenoms = prenoms;
+        }
         this.id = this.generateUID();
         this.connecteAuMoinsUneFois = false;
     }

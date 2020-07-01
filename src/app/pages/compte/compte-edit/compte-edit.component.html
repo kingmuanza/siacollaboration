@@ -1,1 +1,96 @@
-<p>compte-edit works!</p>
+<div class="page">
+    <div class="entete">
+        <div class="row">
+            <div class="cell-lg-8">
+                <div class="titre">
+                    Nouvel utilisateur
+                </div>
+                <div class="sous-titre">
+                    Ajoutez un nouvel utilisateur
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contenu">
+        <div class="row">
+            <div class="cell-lg-8">
+                <div class="formulaire">
+                    <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
+                        <div class="row">
+                            <div class="cell-lg-6">
+                                <input formControlName="noms" data-role="input" data-prepend="Nom">
+                            </div>
+                            <div class="cell-lg-6">
+                                <input formControlName="prenoms" data-role="input" data-prepend="Prénom">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="cell-lg-12">
+                                <input formControlName="login" data-role="input" data-prepend="Login">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="cell-lg-6">
+                                <input formControlName="passe" type="password" data-role="input"
+                                    data-prepend="Mot de passe">
+                            </div>
+                            <div class="cell-lg-6">
+                                <input formControlName="confirm" type="password" data-role="input"
+                                    data-prepend="Confirmation">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="cell-lg-12">
+                                <select formControlName="role" data-role="select" data-filter="false"
+                                    data-prepend="Rôle">
+                                    <option value="0">
+                                        Utilisateur
+                                    </option>
+                                    <option value="1">
+                                        Administrateur
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="cell-lg-6">
+                                <select formControlName="poste" data-role="select" data-prepend="Poste occupé">
+                                    <option value="1">
+                                        Poste 1
+                                    </option>
+                                    <option value="2">
+                                        Poste 2
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="cell-lg-6">
+                                <select formControlName="departement" data-role="select" data-prepend="Département">
+                                    <option value="1">
+                                        Département 1
+                                    </option>
+                                    <option value="2">
+                                        Département 2
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="cell-lg-12">
+                                <button class="button primary">
+                                    Enregistrer
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="cell-lg-3">
+                <div (click)="galerie()" class="photo">
+                    <img [src]="photoURL ? photoURL : '../../../../assets/user.png'" style="width: 100%;">
+                    <input id="uploadBtn" type="file" (change)="uploadFile($event)" class="filebtn"
+                        #fileButton />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
