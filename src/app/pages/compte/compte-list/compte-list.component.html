@@ -23,11 +23,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let utilisateur of utilisateurs">
+                <tr class="ligne" (click)="view(utilisateur)" *ngFor="let utilisateur of utilisateurs">
                     <td>{{utilisateur.noms}}</td>
                     <td>{{utilisateur.prenoms}}</td>
                     <td>{{utilisateur.login}}</td>
-                    <td>{{utilisateur.role}}</td>
+                    <td>
+                        <b>
+                            {{utilisateur.role === '1' ? 'Admin': ''}}
+                        </b>
+                    </td>
                 </tr>
             </tbody>
         </table>

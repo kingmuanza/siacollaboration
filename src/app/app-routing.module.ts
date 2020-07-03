@@ -21,11 +21,22 @@ import { DossierRecentComponent } from './pages/dossier/dossier-recent/dossier-r
 import { NotificationsComponent } from './pages/notifications/notifications.component';
 import { CompteEditComponent } from './pages/compte/compte-edit/compte-edit.component';
 import { CompteViewComponent } from './pages/compte/compte-view/compte-view.component';
+import { BlancheComponent } from './pages/blanche/blanche.component';
+import { InfoListComponent } from './pages/info/info-list/info-list.component';
+import { InfoEditComponent } from './pages/info/info-edit/info-edit.component';
+import { InfoViewComponent } from './pages/info/info-view/info-view.component';
+import { InfoMesComponent } from './pages/info/info-mes/info-mes.component';
+import { DepartementListComponent } from './pages/departement/departement-list/departement-list.component';
+import { DepartementEditComponent } from './pages/departement/departement-edit/departement-edit.component';
+import { DepartementViewComponent } from './pages/departement/departement-view/departement-view.component';
+import { PosteListComponent } from './pages/poste/poste-list/poste-list.component';
+import { PosteEditComponent } from './pages/poste/poste-edit/poste-edit.component';
+import { PosteViewComponent } from './pages/poste/poste-view/poste-view.component';
 
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
-  { path: 'connexion', component: ConnexionComponent },
+  { path: 'connexion', component: BlancheComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: 'utilisateurs', component: CompteListComponent },
   { path: 'serveur-fichier', component: ServeurFichierComponent },
@@ -40,7 +51,7 @@ const routes: Routes = [
   { path: 'fichier/view/:id', component: FichierViewComponent },
 
   { path: 'dossier', component: DossierListComponent },
-  { path: 'dossier/recents', component: DossierRecentComponent },
+  { path: 'dossierrecents', component: DossierRecentComponent },
   { path: 'dossier/edit', component: DossierEditComponent },
   { path: 'dossier/edit/:id', component: DossierEditComponent },
   { path: 'dossier/view/:id', component: DossierViewComponent },
@@ -50,12 +61,29 @@ const routes: Routes = [
   { path: 'groupe/edit/:id', component: GroupeEditComponent },
   { path: 'groupe/view/:id', component: GroupeViewComponent },
 
+  { path: 'poste', component: PosteListComponent },
+  { path: 'poste/edit', component: PosteEditComponent },
+  { path: 'poste/edit/:id', component: PosteEditComponent },
+  { path: 'poste/view/:id', component: PosteViewComponent },
+
   { path: 'compte', component: CompteListComponent },
   { path: 'compte/edit', component: CompteEditComponent },
   { path: 'compte/edit/:id', component: CompteEditComponent },
   { path: 'compte/view/:id', component: CompteViewComponent },
 
-  { path: '**', redirectTo: 'connexion' }
+  { path: 'departement', component: DepartementListComponent },
+  { path: 'departement/edit', component: DepartementEditComponent },
+  { path: 'departement/edit/:id', component: DepartementEditComponent },
+  { path: 'departement/view/:id', component: DepartementViewComponent },
+
+  { path: 'info', component: InfoListComponent },
+  { path: 'info/edit', component: InfoEditComponent },
+  { path: 'info/edit/:id', component: InfoEditComponent },
+  { path: 'infomiennes', component: InfoMesComponent },
+  { path: 'infomiennes/:id', component: InfoMesComponent },
+  { path: 'info/view/:id', component: InfoViewComponent },
+
+  { path: '**', redirectTo: 'accueil' }
 ];
 
 @NgModule({

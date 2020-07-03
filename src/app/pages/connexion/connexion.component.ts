@@ -21,13 +21,6 @@ export class ConnexionComponent implements OnInit {
 
   ngOnInit() {
     this.initConnexionForm();
-    this.utilisateurSubscription = this.idService.utilisateurSubject.subscribe((utilisateur) => {
-      this.utilisateur = utilisateur;
-      if (this.utilisateur) {
-        this.router.navigate(['accueil']);
-      }
-    });
-    this.idService.emit();
   }
 
   initConnexionForm() {
@@ -43,7 +36,6 @@ export class ConnexionComponent implements OnInit {
     const passe = valueForm.passe;
     this.idService.signIn(email, passe).then(() => {
       console.log('Authentification réussie');
-      this.router.navigate(['accueil']);
     }).catch((e) => {
       console.log(e);
       this.messageErreur = 'Email ou mot de passe incorrect';

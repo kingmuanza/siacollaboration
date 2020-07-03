@@ -9,6 +9,7 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
 import { Fichier } from 'src/app/models/fichier.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-dossier-view',
@@ -33,6 +34,8 @@ export class DossierViewComponent implements OnInit {
   dossier: Dossier;
   form: FormGroup;
   utilisateurs: Array<Utilisateur>;
+  utilisateur: Utilisateur;
+  utilisateurSubscription: Subscription;
   arbre = new Array<Dossier>();
 
   fichiers: FileList;
@@ -47,7 +50,6 @@ export class DossierViewComponent implements OnInit {
   constructor(
     private router: Router,
     private utilisateurService: UtilisateurService,
-    public activityService: ActivityService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute
   ) { }
@@ -86,12 +88,23 @@ export class DossierViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initForm();
+    this.refresh();
+    this.utilisateurSubscription = this.utilisateurService.utilisateurSubject.subscribe((utilisateur) => {
+      if (utilisateur) {
+        this.utilisateur = utilisateur;
+        this.refresh();
+      } else {
+      }
+    });
+  }
+
+  refresh() {
     this.route.paramMap.subscribe((paramMap) => {
       const id = paramMap.get('id');
       this.getDossier(id);
       this.getDossiers(id);
     });
-    this.initForm();
     this.utilisateurService.getAll().then((utilisateurs) => {
       this.utilisateurs = utilisateurs;
     });
@@ -136,6 +149,7 @@ export class DossierViewComponent implements OnInit {
       if (!this.dossierExist(this.nomDossier)) {
         const dossier = new Dossier(this.nomDossier);
         dossier.dossierParent = this.dossier;
+        dossier.createur = this.utilisateur;
         const db = firebase.firestore();
         db.collection('dossiers').doc(dossier.id).set(JSON.parse(JSON.stringify(dossier))).then(() => {
           this.getDossiers(this.dossier.id);
@@ -166,13 +180,6 @@ export class DossierViewComponent implements OnInit {
   }
 
   getDossiers(id: string) {
-    const activity = this.activityService.open({
-      style: 'color',
-      text: 'Loading ...',
-      type: 'simple',
-      overlayAlpha: 0,
-      overlayColor: '#fff',
-    });
     this.dossiers = new Array<Dossier>();
     this.documents = new Array<Fichier>();
     const db = firebase.firestore();
@@ -184,7 +191,6 @@ export class DossierViewComponent implements OnInit {
           this.DOSSIERS.push(dossier);
         }
       });
-      this.activityService.close(activity);
     });
     db.collection('fichiers').get().then((resultats) => {
       resultats.forEach((resultat) => {
@@ -194,7 +200,6 @@ export class DossierViewComponent implements OnInit {
           this.DOCUMENTS.push(document);
         }
       });
-      this.activityService.close(activity);
     });
   }
 
@@ -294,6 +299,7 @@ export class DossierViewComponent implements OnInit {
                 document.lastModified = this.fichiers[i].lastModified;
                 this.dejaTelecharge += 0.1;
                 this.calculTelechargement();
+                document.createur = this.utilisateur;
                 db.collection('fichiers').doc(document.id).set(JSON.parse(JSON.stringify(document))).then(() => {
                   this.dejaTelecharge += 0.1;
                   this.calculTelechargement();

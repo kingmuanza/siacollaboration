@@ -4,7 +4,7 @@
         Récents
     </div>
     <div class="muanza-menu-item-group">
-        <a routerLink="/dossier/recents" routerLinkActive="active" class="muanza-menu-item" style="">
+        <a routerLink="/dossierrecents" routerLinkActive="active" class="muanza-menu-item" style="">
             <small class="mif-calendar muanza-menu-icon">
 
             </small>
@@ -24,9 +24,12 @@
     </div>
     <div id="dropdown_toggle_suivi" class="muanza-menu-title" >
         <div style="line-height: 1.15; color:rgb(1, 50, 126); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 200px;">
-            <b>
-                {{utilisateur.noms ? utilisateur.noms : 'Pour moi'}}
+            <b *ngIf="utilisateur">
+                {{utilisateur.noms ? utilisateur.noms : utilisateur.login}}
                 {{utilisateur.prenoms ? utilisateur.prenoms : ''}}
+            </b>
+            <b *ngIf="!utilisateur">
+                Pour moi
             </b>
         </div>
     </div>
@@ -42,9 +45,18 @@
             <small class="mif-folder muanza-menu-icon" style="">
             </small>
             <small>
-                Partagés avec moi
+                Dossiers Partagés
             </small>
         </a>
+        <a routerLink="/infomiennes" routerLinkActive="active" class="muanza-menu-item">
+            <small class="mif-info muanza-menu-icon">
+
+            </small>
+            <small>
+                Informations
+            </small>
+        </a>
+        <!--
         <a routerLink="/groupe" routerLinkActive="active" class="muanza-menu-item">
             <small class="mif-users muanza-menu-icon" style="">
             </small>
@@ -59,12 +71,37 @@
                 Fichiers téléchargés
             </small>
         </a>
+    -->
     </div>
-    <div id="dropdown_toggle_1" class="muanza-menu-title">
+    <div *ngIf="utilisateur && utilisateur.role ==='1'" id="dropdown_toggle_1" class="muanza-menu-title">
         Paramètres
     </div>
 
-    <div class="muanza-menu-item-group">
+    <div *ngIf="utilisateur && utilisateur.role ==='1'" class="muanza-menu-item-group">
+        <a routerLink="/info" routerLinkActive="active" class="muanza-menu-item">
+            <small class="mif-info muanza-menu-icon">
+
+            </small>
+            <small>
+                Informations
+            </small>
+        </a>
+        <a routerLink="/departement" routerLinkActive="active" class="muanza-menu-item">
+            <small class="mif-flow-tree muanza-menu-icon">
+
+            </small>
+            <small>
+                Départements
+            </small>
+        </a>
+        <a routerLink="/poste" routerLinkActive="active" class="muanza-menu-item">
+            <small class="mif-organization muanza-menu-icon">
+
+            </small>
+            <small>
+                Postes
+            </small>
+        </a>
         <a routerLink="/compte" routerLinkActive="active" class="muanza-menu-item">
             <small class="mif-user-check muanza-menu-icon">
 

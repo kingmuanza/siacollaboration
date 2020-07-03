@@ -1,0 +1,37 @@
+<div class="page">
+    <div class="entete">
+        <div class="row">
+            <div class="cell-lg-8">
+                <div class="titre">
+                    {{info ? info.titre: 'Nouvelle information'}}
+                </div>
+                <div class="sous-titre">
+                    {{info.createur ? info.createur.noms: ''}}
+                    {{info.createur ? info.createur.prenoms: ''}},
+                    {{info.date | date: 'yyyy-MM-dd HH:mm'}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contenu">
+
+        <div style="width: 66.6%;">
+            <form [formGroup]="form" (ngSubmit)="onSubmitForm()">
+                <div>
+                    <input formControlName="titre" data-role="input" data-prepend="Titre">
+                </div>
+                <div>
+                    <textarea formControlName="description" data-prepend="Description"
+                        data-role="textarea"></textarea>
+                </div>
+                <div>
+                    <button [disabled]="form.invalid" class="button">
+                        <ng-container>
+                            Publier
+                        </ng-container>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

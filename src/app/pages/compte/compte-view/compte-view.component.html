@@ -1,1 +1,163 @@
-<p>compte-view works!</p>
+<div class="page">
+    <div class="entete">
+        <div class="row">
+            <div *ngIf="utilisateur" class="cell-lg-2">
+                <div class="muanza-image" [ngStyle]="{'background-image': 'url('+ edf  +')'}">
+                    
+                </div>                 
+            </div>
+            <div *ngIf="utilisateur" class="cell-lg-8">
+                <div class="titre">
+                    {{utilisateur.login}}
+                </div>
+                <div class="sous-titre">
+                    {{utilisateur.noms}}
+                    {{utilisateur.prenoms}}
+                    {{utilisateur.role === '1' ? ', Administrateur': ''}}
+                </div>
+                <div class="boutons">
+                    <button class="button">
+                        Modifier
+                    </button>
+                    <button class="button">
+                        Supprimer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contenu">
+        
+        <div class="dossiers">
+            <div class="row">
+                <div class="cell-lg-2" *ngFor="let dossier of dossiers" [contextMenu]="basicMenu">
+                    <div (dblclick)="ouvrir(dossier)" class="dossier">
+                        <div class="icone">
+                            <img src="../../../assets/folder.png">
+                        </div>
+                        <div class="details">
+                            <div class="nom" style="white-space: pre-wrap;">
+                                <b>{{dossier.nom}}</b>
+                            </div>
+                            <div *ngIf="dossier.createur">
+                                {{dossier.createur.noms}}
+                                {{dossier.createur.prenoms}}
+                            </div>
+                            <div class="date">
+                                {{dossier.date | date: 'yyyy-MM-dd'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <context-menu>
+                        <ng-template contextMenuItem (execute)="ouvrir(dossier)">
+                            <div class="muanza-menu-clic-droit-item premier" style="">
+                                <span class="icone mif-folder-open"></span>
+                                Ouvrir
+                            </div>
+                        </ng-template>
+                    </context-menu>
+                </div>
+                <div class="cell-lg-2" *ngFor="let dossier of documents" [contextMenu]="basicMenu">
+                    <div [title]="dossier.taille + ' octects'" (dblclick)="telecharger(dossier)" class="fichier">
+                        <div class="icone">
+                            <ng-container *ngIf="!isImage(dossier)">
+                                <img src="../../../assets/fichier.png">
+                            </ng-container>
+                            <ng-container *ngIf="isImage(dossier)">
+                                <img [src]="dossier.url">
+                            </ng-container>
+                        </div>
+                        <div class="details">
+                            <div class="nom" style="white-space: pre-wrap;">
+                                <b>{{dossier.nom}}</b>
+                            </div>
+                            <div *ngIf="dossier.createur">
+                                {{dossier.createur.noms}}
+                                {{dossier.createur.prenoms}}
+                            </div>
+                            <div class="date">
+                                {{dossier.date | date: 'yyyy-MM-dd'}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <context-menu>
+                        <ng-template contextMenuItem (execute)="ouvrir(dossier)">
+                            <div class="muanza-menu-clic-droit-item premier" style="">
+                                <span class="icone mif-folder-open"></span>
+                                Ouvrir
+                            </div>
+                        </ng-template>
+                    </context-menu>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sous-titre">
+            Retrouvez toutes les informations
+            <span>
+                <sup class="fg-orange">
+                    {{informations.length}}
+                </sup>
+            </span>
+            <span style="float: right; margin-right: 3px;">
+                <b>
+                    Voir tout
+                </b>
+            </span>
+        </div>
+        <div class="sujets">
+            <div class="row">
+                <div (click)="ouvrirInformation(sujet)" *ngFor="let sujet of informations; let i = index"
+                    class="cell-lg-4">
+                    <div *ngIf="i < 3" class="sujet shadow-1">
+                        <div class="image-arriere">
+
+                        </div>
+                        <div class="description black">
+                            <div class="row">
+                                <div class="cell-lg-12">
+                                    <div class="commentaires black">
+                                        {{sujet.date | date: 'yyyy-MM-dd'}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sujet--contenu">
+                                <div class="contenu--titre">
+                                    {{sujet.titre}}
+                                </div>
+                                <div class="contenu--sous-titre">
+                                    {{sujet.description}}
+                                </div>
+                                <div *ngIf="sujet.createur" class="createur">
+                                    <div class="row">
+                                        <div class="cell-lg-10">
+                                            {{sujet.createur.noms ? sujet.createur.noms: ''}}
+                                            {{sujet.createur.prenoms ? sujet.createur.prenoms: ''}}
+                                        </div>
+                                        <div class="cell-lg-2">
+                                            <img
+                                                [src]="sujet.createur.photoURL ? sujet.createur.photoURL: '../../../assets/logoEDF.png'">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="cell-lg-8">
+                <div class="formulaire">
+
+                </div>
+            </div>
+            <div class="cell-lg-4">
+
+            </div>
+        </div>
+    </div>
+</div>

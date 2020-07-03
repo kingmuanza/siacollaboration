@@ -1,0 +1,71 @@
+<div class="page">
+    <div class="entete">
+        <div class="row">
+            <div class="cell-lg-8">
+                <div class="titre">
+                    Informations
+                </div>
+                <div class="sous-titre">
+                    Toutes les informations en circulation
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="contenu">
+        
+        <div class="buttons">
+            <div class="row">
+                <div class="cell-lg-3">
+                    <button (click)="nouveau()" class="button" style="width: 100%;">
+                        Nouvelle information
+                    </button>
+                </div>
+                <div class="cell-lg-9">
+                    <input data-role="input" placeholder="Rechercher...">
+                </div>
+            </div>
+        </div>
+        <div class="infos">
+            <div class="row">
+                <div (click)="ouvrir(info)" *ngFor="let info of informations; let i = index"
+                    class="cell-lg-4">
+                    <div *ngIf="i < 3" class="info shadow-1">
+                        <div class="image-arriere">
+
+                        </div>
+                        <div class="description black">
+                            <div class="row">
+                                <div class="cell-lg-12">
+                                    <div class="commentaires black">
+                                        {{info.date | date: 'yyyy-MM-dd HH:mm'}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info--contenu">
+                                <div class="contenu--titre">
+                                    {{info.titre}}
+                                </div>
+                                <div class="contenu--sous-titre">
+                                    {{info.description}}
+                                </div>
+                                <div *ngIf="info.createur" class="createur">
+                                    <div class="row">
+                                        <div class="cell-lg-10">
+                                            {{info.createur.noms ? info.createur.noms: ''}}
+                                            {{info.createur.prenoms ? info.createur.prenoms: ''}}
+                                        </div>
+                                        <div class="cell-lg-2">
+                                            <img
+                                                [src]="info.createur.photoURL ? info.createur.photoURL: '../../../assets/logoEDF.png'">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

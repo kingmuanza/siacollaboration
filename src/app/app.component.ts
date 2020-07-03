@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Utilisateur } from './models/utilisateur.model';
 import { Subscription } from 'rxjs';
 import { UtilisateurService } from './services/utilisateur.service';
 import * as firebase from 'firebase';
+import { metro } from 'metro4';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'edfcameroun';
+export class AppComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('dialogConnexion', { static: false }) dialogConnexion: metro.DialogComponent;
 
   utilisateur: Utilisateur;
   utilisateurSubscription: Subscription;
 
-  constructor(private idService: UtilisateurService) {
+  constructor(private idService: UtilisateurService, private router: Router) {
 
     const firebaseConfig = {
       apiKey: 'AIzaSyAtlfcNTGfaYN24fUO0Q3TCEcn9htCvGt4',
@@ -31,10 +34,33 @@ export class AppComponent implements OnInit {
 
   }
 
+  ouvrirDialogue() {
+    this.dialogConnexion.open();
+  }
+
   ngOnInit() {
+    console.log('this.dialogConnexion');
+    console.log(this.dialogConnexion);
+  }
+
+  ngAfterViewInit() {
+    console.log('this.dialogConnexion1');
+    console.log(this.dialogConnexion);
     this.utilisateurSubscription = this.idService.utilisateurSubject.subscribe((utilisateur) => {
-      this.utilisateur = utilisateur;
+      if (utilisateur) {
+        this.utilisateur = utilisateur;
+        this.dialogConnexion.close();
+      } else {
+        console.log('this.dialogConnexion2');
+        console.log(this.dialogConnexion);
+        this.dialogConnexion.open();
+      }
     });
     this.idService.emit();
+  }
+
+  deconnexion() {
+    this.router.navigate(['']);
+    this.idService.signOut();
   }
 }

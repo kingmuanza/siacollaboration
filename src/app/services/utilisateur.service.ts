@@ -8,7 +8,7 @@ import * as firebase from 'firebase';
 })
 export class UtilisateurService {
 
-  utilisateur = new Utilisateur('Muanza Kangudie', 'Pierre Emmanuel');
+  utilisateur: Utilisateur;
   utilisateurs = new Array<Utilisateur>();
   utilisateurSubject: Subject<Utilisateur>;
 
@@ -49,6 +49,7 @@ export class UtilisateurService {
 
   signOut() {
     this.utilisateur = null;
+    this.emit();
   }
 
   getAll(): Promise<Array<Utilisateur>> {

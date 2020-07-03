@@ -1,4 +1,5 @@
 $bleu: rgb(1, 50, 126);
+
 .app-bar {
     ul {
         li {
@@ -12,8 +13,18 @@ $bleu: rgb(1, 50, 126);
     }
 
 }
+
 .menu-gauche {
     margin-top: -10px;
+}
+
+.muanza-image-pp {
+    margin-top: -5px;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 2px solid orangered;
+    padding: 2px;
 }
 
 .for-menu-gauche {

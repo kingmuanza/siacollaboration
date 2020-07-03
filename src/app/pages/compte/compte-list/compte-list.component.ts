@@ -77,6 +77,10 @@ export class CompteListComponent implements OnInit {
     this.router.navigate(['compte', 'edit', utilisateur.id]);
   }
 
+  view(utilisateur: Utilisateur) {
+    this.router.navigate(['compte', 'view', utilisateur.id]);
+  }
+
   delete() {
     const oui = confirm('Etes-vous sûr de vouloir supprimer cet utilisateur ?');
     if (oui) {

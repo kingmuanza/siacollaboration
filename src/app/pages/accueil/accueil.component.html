@@ -1,10 +1,10 @@
 <div class="page">
     <div class="entete">
-        <div class="sous-titre">
+        <div *ngIf="informations && informations.length > 0" class="sous-titre">
             Retrouvez toutes les informations
             <span>
                 <sup class="fg-orange">
-                    4
+                    {{informations.length}}
                 </sup>
             </span>
             <span style="float: right; margin-right: 3px;">
@@ -15,7 +15,8 @@
         </div>
         <div class="sujets">
             <div class="row">
-                <div (click)="ouvrirInformation(sujet)" *ngFor="let sujet of informations; let i = index" class="cell-lg-4">
+                <div (click)="ouvrirInformation(sujet)" *ngFor="let sujet of informations; let i = index"
+                    class="cell-lg-4">
                     <div *ngIf="i < 3" class="sujet shadow-1">
                         <div class="image-arriere">
 
@@ -116,6 +117,7 @@
                                 Ouvrir
                             </div>
                         </ng-template>
+                        <!--
                         <ng-template contextMenuItem (execute)="renommer(dossier)">
                             <div class="muanza-menu-clic-droit-item" style="">
                                 <span class="icone mif-pencil"></span>
@@ -134,6 +136,7 @@
                                 Partager
                             </div>
                         </ng-template>
+                    -->
                     </context-menu>
                 </div>
             </div>

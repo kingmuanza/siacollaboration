@@ -9,6 +9,7 @@ import { ActivityService } from 'ng-metro4';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UtilisateurService } from 'src/app/services/utilisateur.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-accueil',
@@ -20,11 +21,14 @@ export class AccueilComponent implements OnInit {
   @ViewChild('dialogCreation', { static: true }) dialogCreation: metro.DialogComponent;
   @ViewChild('dialogModification', { static: true }) dialogModification: metro.DialogComponent;
   @ViewChild('dialogPartage', { static: true }) dialogPartage: metro.DialogComponent;
+
   nomDossier = '';
   dossiers = new Array<Dossier>();
   dossier: Dossier;
   form: FormGroup;
   utilisateurs: Array<Utilisateur>;
+  utilisateur: Utilisateur;
+  utilisateurSubscription: Subscription;
   informations = new Array<Information>();
 
   public items = [
@@ -36,29 +40,48 @@ export class AccueilComponent implements OnInit {
   constructor(
     private router: Router,
     private utilisateurService: UtilisateurService,
-    public activityService: ActivityService,
     private formBuilder: FormBuilder
   ) {
-    for (let i = 0; i < 5; i++) {
-      this.informations.push(new Information('Exemple de titre', 'Exemple de description', new Utilisateur('Pierre', 'Emmanuel')));
-    }
-
   }
 
   ngOnInit(): void {
-    this.getDossiers();
     this.initForm();
-    this.utilisateurService.getAll().then((utilisateurs) => {
-      this.utilisateurs = utilisateurs;
+    this.getInformations();
+    this.utilisateurSubscription = this.utilisateurService.utilisateurSubject.subscribe((utilisateur) => {
+      if (utilisateur) {
+        this.utilisateur = utilisateur;
+        this.getDossiers();
+        this.utilisateurService.getAll().then((utilisateurs) => {
+          this.utilisateurs = utilisateurs;
+        });
+      } else {
+      }
+    });
+    this.utilisateurService.emit();
+  }
+
+
+  getInformations() {
+    this.informations = new Array<Information>();
+    const db = firebase.firestore();
+    db.collection('informations').get().then((resultats) => {
+      resultats.forEach((resultat) => {
+        const info = resultat.data() as Information;
+        this.informations.push(info);
+      });
+      this.informations = this.informations.sort((a, b) => {
+        return new Date(a.date).getTime() - new Date(b.date).getTime() ? -1 : 1;
+      });
     });
   }
+
 
   importer() {
 
   }
 
   ouvrirInformation(sujet) {
-
+    this.router.navigate(['info', 'view', sujet.id]);
   }
 
   nouveauDossier() {
@@ -81,6 +104,7 @@ export class AccueilComponent implements OnInit {
     if (this.nomDossier) {
       if (!this.dossierExist(this.nomDossier)) {
         const dossier = new Dossier(this.nomDossier);
+        dossier.createur = this.utilisateur;
         const db = firebase.firestore();
         db.collection('dossiers').doc(dossier.id).set(JSON.parse(JSON.stringify(dossier))).then(() => {
           this.getDossiers();
@@ -95,14 +119,10 @@ export class AccueilComponent implements OnInit {
   }
 
   getDossiers() {
-    const activity = this.activityService.open({
-      style: 'color',
-      text: 'Loading ...',
-      type: 'simple'
-    });
     this.dossiers = new Array<Dossier>();
     const db = firebase.firestore();
     db.collection('dossiers').get().then((resultats) => {
+      this.dossiers = new Array<Dossier>();
       resultats.forEach((resultat) => {
         const dossier = resultat.data() as Dossier;
         if (dossier.dossierParent) {
@@ -111,7 +131,6 @@ export class AccueilComponent implements OnInit {
           this.dossiers.push(dossier);
         }
       });
-      this.activityService.close(activity);
     });
   }
 
@@ -150,12 +169,10 @@ export class AccueilComponent implements OnInit {
     }
   }
 
-
   initForm() {
     this.form = this.formBuilder.group({
       nom: [this.dossier ? this.dossier.nom : '', Validators.required]
     });
-
   }
 
   onSubmitForm() {

@@ -34,6 +34,15 @@ import { PosteListComponent } from './pages/poste/poste-list/poste-list.componen
 import { PosteEditComponent } from './pages/poste/poste-edit/poste-edit.component';
 import { PosteViewComponent } from './pages/poste/poste-view/poste-view.component';
 import { NotificationsComponent } from './pages/notifications/notifications.component';
+import { BlancheComponent } from './pages/blanche/blanche.component';
+import { InfoListComponent } from './pages/info/info-list/info-list.component';
+import { InfoViewComponent } from './pages/info/info-view/info-view.component';
+import { InfoEditComponent } from './pages/info/info-edit/info-edit.component';
+import { DepartementListComponent } from './pages/departement/departement-list/departement-list.component';
+import { DepartementViewComponent } from './pages/departement/departement-view/departement-view.component';
+import { DepartementEditComponent } from './pages/departement/departement-edit/departement-edit.component';
+import { InfoMesComponent } from './pages/info/info-mes/info-mes.component';
+import { CompteMonComponent } from './pages/compte/compte-mon/compte-mon.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +73,16 @@ import { NotificationsComponent } from './pages/notifications/notifications.comp
     PosteListComponent,
     PosteEditComponent,
     PosteViewComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    BlancheComponent,
+    InfoListComponent,
+    InfoViewComponent,
+    InfoEditComponent,
+    DepartementListComponent,
+    DepartementViewComponent,
+    DepartementEditComponent,
+    InfoMesComponent,
+    CompteMonComponent
   ],
   imports: [
     BrowserModule,

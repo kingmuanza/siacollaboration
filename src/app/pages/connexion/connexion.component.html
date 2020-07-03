@@ -1,17 +1,22 @@
 <div>
-    <div class="titre">
-        <h1>
-            Connexion
-        </h1>
+    <div>
+
+        <img src="../../../assets/logoEDF.png" style="height: 60px; margin-top: 0px; margin-bottom: 10px;">
     </div>
 
     <div class="contenu">
+        
+        <div class="message" style="opacity: 0.8;">
+            <small>
+                Si vous ne disposez pas de paramètres d'authentification, veuillez contacter l'administrateur
+            </small>
+        </div>
         <form [formGroup]="connexionForm" (ngSubmit)="onConnexionFormSubmit()">
             <div class="row">
-                <div class="cell-lg-4">
+                <div class="cell-lg-12">
                     <input formControlName="login" data-role="input" data-prepend="Login">
                 </div>
-                <div class="cell-lg-4">
+                <div class="cell-lg-12">
                     <input formControlName="passe" data-role="input" type="password" data-prepend="Mot de passe">
                 </div>
                 <div class="cell-lg-2">
@@ -21,11 +26,6 @@
                 </div>
             </div>
         </form>
-        <div class="message fg-white">
-            <small>
-                Si vous ne disposez pas de paramètres d'authentification, veuillez contacter l'administrateur
-            </small>
-        </div>
 
         <div style="margin-top: 20px;" class="fg-red">
             {{messageErreur}}

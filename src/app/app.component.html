@@ -1,9 +1,9 @@
 <header *ngIf="utilisateur" class="app-bar bg-white fg-dark" data-role="appbar" data-expand-point="md">
-  <a href="" class="d-block brand fg-dark no-hover" style="width: 50vw;">
+  <a href="" class="d-block brand fg-dark no-hover" style="width: 50vw; white-space: nowrap;">
     <img src="../assets/logoEDF.png" style="height: 50px; margin-top: -10px;">
-    <span style="font-weight: bolder; margin-left: 10px; color: #eee; font-size: 1.2em;">
+    <b style="font-weight: bolder; margin-left: 0px; color: orangered; font-size: 1.2em;">
       EDF - AMOA
-    </span>
+    </b>
   </a>
   <input style="width: 99%;" data-role="input" placeholder="Rechercher">
   <ul class="app-bar-menu ml-auto">
@@ -30,14 +30,14 @@
         </span>
       </a>
       <ul class="d-menu" data-role="dropdown">
-        <li><a routerLink="compte/view">Mes infos</a></li>
-        <li><a>Déconnexion</a></li>
+        <li><a routerLink="/compte/view">Mes infos</a></li>
+        <li><a (click)="deconnexion()">Déconnexion</a></li>
       </ul>
     </li>
     
     <li>
       <a style="margin-right: 20px;" >
-        <img style="margin-top: -5px ; height: 35px; width: 35px; border-radius: 50%; border: 2px solid orangered; padding: 2px;" src="../assets/logoEDF.png">
+        <img class="muanza-image-pp" [src]="utilisateur.photoURL ? utilisateur.photoURL : '../assets/logoEDF.png'">
       </a>
     </li>
 
@@ -55,3 +55,25 @@
   </div>
   </div>
 </div>
+
+
+<m4-dialog #dialogConnexion width="50%" class="shadow-1" [overlay]="true" overlay-color="#fff" [overlay-alpha]="0.95">
+  <div dialog-title>
+    <b style="color: rgb(1, 50, 126); float: right;">
+      EDF - AMOA
+    </b>
+      Identifier vous !
+  </div>
+  <div dialog-content>
+    <app-connexion>
+
+    </app-connexion>
+  </div>
+  <div dialog-actions>
+      <div>
+          <button style="margin-right: 20px;" class="button muanza">
+              Changer de compte
+          </button>
+      </div>
+  </div>
+</m4-dialog>
